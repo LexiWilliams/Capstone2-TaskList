@@ -1,0 +1,7 @@
+C:\Users\lexas\OneDrive\Desktop\C#\Week 2\Capstone2-TaskList\Capstone2-TaskList\bin\Debug\Capstone2-TaskList.exe.config
+C:\Users\lexas\OneDrive\Desktop\C#\Week 2\Capstone2-TaskList\Capstone2-TaskList\bin\Debug\Capstone2-TaskList.exe
+C:\Users\lexas\OneDrive\Desktop\C#\Week 2\Capstone2-TaskList\Capstone2-TaskList\bin\Debug\Capstone2-TaskList.pdb
+C:\Users\lexas\OneDrive\Desktop\C#\Week 2\Capstone2-TaskList\Capstone2-TaskList\obj\Debug\Capstone2-TaskList.csprojAssemblyReference.cache
+C:\Users\lexas\OneDrive\Desktop\C#\Week 2\Capstone2-TaskList\Capstone2-TaskList\obj\Debug\Capstone2-TaskList.csproj.CoreCompileInputs.cache
+C:\Users\lexas\OneDrive\Desktop\C#\Week 2\Capstone2-TaskList\Capstone2-TaskList\obj\Debug\Capstone2-TaskList.exe
+C:\Users\lexas\OneDrive\Desktop\C#\Week 2\Capstone2-TaskList\Capstone2-TaskList\obj\Debug\Capstone2-TaskList.pdb
