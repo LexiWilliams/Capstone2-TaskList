@@ -14,7 +14,7 @@ namespace Capstone2_TaskList
         private string taskDescription;
         private DateTime dueDate;
         private bool taskCompleted;
-        private static object allTheInfo;
+        //private static object allTheInfo;
         #endregion
         #region Properties
         public string MemberName
@@ -94,9 +94,24 @@ namespace Capstone2_TaskList
         {
             if (taskNumber == 1)
             {
-                PrintEachItemInListVoid(task);
-                return true;
-                
+                int num = ChooseTaskList(task);
+                if (num == 1) 
+                {
+                    PrintEachItemInListVoid(task);
+                    return true;
+                }
+                else if (num == 2)
+                {
+                    List<string> memberNames = MakeListMemberNames(task);
+                    int indexOfMember = PrintEachMemberNameList(memberNames);
+                    PrintAllMemberTasks(memberNames, task, indexOfMember);
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("That is not a valid input");
+                    return ChooseTask(taskNumber, task);
+                }
             }
             else if (taskNumber == 2)
             {
@@ -297,8 +312,90 @@ namespace Capstone2_TaskList
             }
             return true;
         }
+        public static int ChooseTaskList(List<Task> task)
+        {
+            Console.WriteLine("Which list would you like? \n1.All tasks \n2.All tasks for one team member");
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int num))
+            {
+                return num;
+            }
+            else
+            {
+                return ChooseTaskList(task);
+            }
+
+        }
+        public static List<string> MakeListMemberNames(List<Task> task)
+        {
+            List<string> memberNames = new List<string>();
+            foreach (Task x in task)
+            {
+                if (memberNames.Contains(x.memberName) == false)
+                {
+                    memberNames.Add(x.memberName);
+                }
+            }
+            return memberNames;
+        }
+        public static int PrintEachMemberNameList(List<string> list)
+        {
+            int index = 0;
+            foreach (string x in list)
+            {
+                index++;
+                Console.WriteLine($"Team member {index}: {x}");
+            }
+            Console.WriteLine($"Which team member would you like to list tasks for? 1-{index} ");
+            string input = Console.ReadLine();
+            if(int.TryParse(input, out int indexOfMember))
+            {
+                if (indexOfMember <= index)
+                {
+                    Console.WriteLine("");
+                    return indexOfMember-1;
+                }
+            }
+            else
+            {
+                return PrintEachMemberNameList(list);
+            }
+            return PrintEachMemberNameList(list);
+        }
+        public static void PrintAllMemberTasks(List<string> memberNames, List<Task> task, int indexOfMember)
+        {
+            foreach (Task t in task)
+            {
+                if (t.memberName == memberNames[indexOfMember])
+                {
+                    Console.WriteLine(t.taskDescription);
+                }
+            }
+            Console.WriteLine("");
+        }
+        //public static void PrintEachMemberNameTask(List<Task> task, int taskNumber)
+        //{
+        //    foreach (Task x in task)
+        //    {
+        //        Console.WriteLine($"Team member name: {x.memberName}");
+        //    }
+        //    Console.WriteLine("");
+        //}
+        //public static void PrintAllTasksForEachMember(List<Task> task, int taskNumber)
+        //{
+        //    PrintEachMemberNameTask(task, taskNumber);
+        //    string input = Console.ReadLine();
+        //    if (int.TryParse(input, out int index))
+        //    {
+        //        Console.WriteLine("Which member's tasks would you like to see?");
+        //    }
+        //    else
+        //    {
+        //        PrintAllTasksForEachMember(task, taskNumber);
+        //    }
+        //    Console.WriteLine("");
+        //}
         #endregion
-
-
     }
 }
+
