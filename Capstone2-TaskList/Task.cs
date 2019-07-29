@@ -14,7 +14,6 @@ namespace Capstone2_TaskList
         private string taskDescription;
         private DateTime dueDate;
         private bool taskCompleted;
-        //private static object allTheInfo;
         #endregion
         #region Properties
         public string MemberName
@@ -95,7 +94,7 @@ namespace Capstone2_TaskList
             if (taskNumber == 1)
             {
                 int num = ChooseTaskList(task);
-                if (num == 1) 
+                if (num == 1)
                 {
                     PrintEachItemInListVoid(task);
                     return true;
@@ -107,9 +106,15 @@ namespace Capstone2_TaskList
                     PrintAllMemberTasks(memberNames, task, indexOfMember);
                     return true;
                 }
+                else if (num == 3)
+                {
+                    PrintTaskByDate(task);
+                    return true;
+                }
                 else
                 {
                     Console.WriteLine("That is not a valid input");
+                    Console.WriteLine("");
                     return ChooseTask(taskNumber, task);
                 }
             }
@@ -143,6 +148,7 @@ namespace Capstone2_TaskList
                 loopNumber++;
                 Console.WriteLine($"\t{loopNumber}:" + x.taskDescription);
             }
+            Console.WriteLine("");
             return loopNumber;
         }
         public static void PrintEachItemInListVoid(List<Task> task)
@@ -172,6 +178,7 @@ namespace Capstone2_TaskList
                 else
                 {
                     Console.WriteLine("That is not a valid name.");
+                    Console.WriteLine("");
                     askAgain = true;
                 }
             }
@@ -188,6 +195,7 @@ namespace Capstone2_TaskList
                 else
                 {
                     Console.WriteLine("That is not a valid description.");
+                    Console.WriteLine("");
                     askAgain = true;
                 }
             }
@@ -205,11 +213,13 @@ namespace Capstone2_TaskList
                 else
                 {
                     Console.WriteLine("That is not a valid date.");
+                    Console.WriteLine("");
                     askAgain = true;
                 }
                 Program.allTheInfo.Add(taskList);
                 taskList.PrintTaskInfo();
             }
+            Console.WriteLine("");
             return true;
         }
         public static bool DeleteTask(List<Task> task)
@@ -217,6 +227,7 @@ namespace Capstone2_TaskList
             bool askAgain = true;
             while (askAgain)
             {
+                Console.WriteLine("");
                 Console.WriteLine("What task number would you like to delete?");
                 int numOfTasks = PrintEachItemInList(task);
                 string input1 = Console.ReadLine();
@@ -231,21 +242,21 @@ namespace Capstone2_TaskList
                             string input = Console.ReadLine().ToLower();
                             if (input == "y")
                             {
-                                //fix here!!!!!
                                 Console.WriteLine($"Task {taskToDelete} was deleted.");
                                 task.Remove(task[taskIndex]);
-                                //   task[taskIndex] = new Task(); //replaces values with null value
-                                // Console.WriteLine($"{ task[taskIndex].taskCompleted}+{task[taskIndex].MemberName}+{task[taskIndex].taskDescription}+{task[taskIndex].dueDate.Date}");
+                                Console.WriteLine("");
                                 askAgain = false;
                             }
                             else if (input == "n")
                             {
                                 Console.WriteLine($"Task {taskToDelete} was not deleted.");
+                                Console.WriteLine("");
                                 askAgain = false;
                             }
                             else
                             {
                                 Console.WriteLine("That is not a valid input.");
+                                Console.WriteLine("");
                                 askAgain = true;
                             }
                         }
@@ -253,15 +264,18 @@ namespace Capstone2_TaskList
                     else
                     {
                         Console.WriteLine("That is not a valid task number.");
+                        Console.WriteLine("");
                         askAgain = true;
                     }
                 }
                 else
                 {
                     Console.WriteLine("That is not a valid task number.");
+                    Console.WriteLine("");
                     askAgain = true;
                 }
             }
+            Console.WriteLine("");
             return true;
         }
         public static bool MarkComplete(List<Task> task)
@@ -279,21 +293,25 @@ namespace Capstone2_TaskList
                         {
                             Console.WriteLine($"You have chosen task: {task[taskIndex].taskDescription}");
                             Console.WriteLine($"Are you sure you want to mark task {taskToComplete} complete? y/n");
+                            Console.WriteLine("");
                             if (Console.ReadLine().ToLower() == "y")
                             {
                                 task[taskIndex].taskCompleted = true;
                                 Console.WriteLine($"Task {taskToComplete} was marked complete.");
                                 task[taskIndex].PrintTaskInfo();
+                                Console.WriteLine("");
                                 askAgain = false;
                             }
                             else if (Console.ReadLine() == "n")
                             {
                                 Console.WriteLine($"Task {taskToComplete} was not marked complete.");
+                                Console.WriteLine("");
                                 askAgain = false;
                             }
                             else
                             {
                                 Console.WriteLine("That is not a valid input.");
+                                Console.WriteLine("");
                                 askAgain = true;
                             }
                         }
@@ -301,20 +319,24 @@ namespace Capstone2_TaskList
                     else
                     {
                         Console.WriteLine("That is not a valid task number.");
+                        Console.WriteLine("");
                         askAgain = true;
                     }
                 }
                 else
                 {
                     Console.WriteLine("That is not a valid task number.");
+                    Console.WriteLine("");
                     askAgain = true;
                 }
             }
+            Console.WriteLine("");
             return true;
         }
         public static int ChooseTaskList(List<Task> task)
         {
-            Console.WriteLine("Which list would you like? \n1.All tasks \n2.All tasks for one team member");
+            Console.WriteLine("Which list would you like? \n1.All tasks \n2.All tasks for one team member\n3.Tasks due by a certain date");
+            Console.WriteLine("");
             string input = Console.ReadLine();
             if (int.TryParse(input, out int num))
             {
@@ -346,14 +368,16 @@ namespace Capstone2_TaskList
                 index++;
                 Console.WriteLine($"Team member {index}: {x}");
             }
+            Console.WriteLine("");
             Console.WriteLine($"Which team member would you like to list tasks for? 1-{index} ");
+            Console.WriteLine("");
             string input = Console.ReadLine();
-            if(int.TryParse(input, out int indexOfMember))
+            if (int.TryParse(input, out int indexOfMember))
             {
                 if (indexOfMember <= index)
                 {
                     Console.WriteLine("");
-                    return indexOfMember-1;
+                    return indexOfMember - 1;
                 }
             }
             else
@@ -373,28 +397,29 @@ namespace Capstone2_TaskList
             }
             Console.WriteLine("");
         }
-        //public static void PrintEachMemberNameTask(List<Task> task, int taskNumber)
-        //{
-        //    foreach (Task x in task)
-        //    {
-        //        Console.WriteLine($"Team member name: {x.memberName}");
-        //    }
-        //    Console.WriteLine("");
-        //}
-        //public static void PrintAllTasksForEachMember(List<Task> task, int taskNumber)
-        //{
-        //    PrintEachMemberNameTask(task, taskNumber);
-        //    string input = Console.ReadLine();
-        //    if (int.TryParse(input, out int index))
-        //    {
-        //        Console.WriteLine("Which member's tasks would you like to see?");
-        //    }
-        //    else
-        //    {
-        //        PrintAllTasksForEachMember(task, taskNumber);
-        //    }
-        //    Console.WriteLine("");
-        //}
+        public static void PrintTaskByDate(List<Task> task)
+        {
+            Console.WriteLine("Enter a date (mm/dd/yyy) to see all tasks due on or before that date.");
+            string input = Console.ReadLine();
+            if (DateTime.TryParse(input, out DateTime deadline))
+            {
+                foreach (Task t in task)
+                {
+                   int isDue = DateTime.Compare(t.dueDate, deadline);
+                    if(isDue <= 0)
+                    {
+                        Console.WriteLine(t.taskDescription);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("That is not a valid date.");
+                Console.WriteLine("");
+                PrintTaskByDate(task);
+            }
+            Console.WriteLine("");
+        }
         #endregion
     }
 }
