@@ -157,7 +157,7 @@ namespace Capstone2_TaskList
             foreach (Task x in task)
             {
                 loopNumber++;
-                Console.WriteLine($"\t{loopNumber}:" + x.taskDescription);
+                Console.WriteLine($"\t{loopNumber}:" + x.TaskDescription+ ", " + x.MemberName + ", " + x.DueDate.ToString("MM/dd/yyyy") + ", " + x.TaskCompleted);
             }
             Console.WriteLine("");
         }
@@ -366,7 +366,7 @@ namespace Capstone2_TaskList
             foreach (string x in list)
             {
                 index++;
-                Console.WriteLine($"Team member {index}: {x}");
+                Console.WriteLine($"\tTeam member {index}: {x}");
             }
             Console.WriteLine("");
             Console.WriteLine($"Which team member would you like to list tasks for? 1-{index} ");
@@ -392,7 +392,7 @@ namespace Capstone2_TaskList
             {
                 if (t.memberName == memberNames[indexOfMember])
                 {
-                    Console.WriteLine(t.taskDescription);
+                    Console.WriteLine("\t" + t.taskDescription);
                 }
             }
             Console.WriteLine("");
@@ -408,7 +408,7 @@ namespace Capstone2_TaskList
                    int isDue = DateTime.Compare(t.dueDate, deadline);
                     if(isDue <= 0)
                     {
-                        Console.WriteLine(t.taskDescription);
+                        Console.WriteLine("\t" + t.taskDescription);
                     }
                 }
             }
